@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".LoginActivity">
+
+
+    <EditText
+            android:id="@+id/edit_loginEmail"
+            android:hint="メールアドレス"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/edit_loginPassword"
+            android:hint="パスワード"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/button_login"
+            android:text="ログイン"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <!--アカウント作成-->
+    <LinearLayout
+            android:id="@+id/layout_createAccount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:text="アカウントを作成する場合は以下を入力してください"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        <EditText
+                android:id="@+id/edit_createAccountEmail"
+                android:hint="メールアドレス"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/edit_createAccountPassword1"
+                android:hint="パスワード(6文字以上)"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/edit_createAccountPassword2"
+                android:hint="パスワード(再入力)"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/edit_createAccountName"
+                android:hint="表示名"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <RadioGroup
+                android:id="@+id/radioGroup_bloodType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <RadioButton
+                    android:id="@+id/radioButton_A"
+                    android:text="A型"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RadioButton
+                    android:id="@+id/radioButton_B"
+                    android:text="B型"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RadioButton
+                    android:id="@+id/radioButton_O"
+                    android:text="O型"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RadioButton
+                    android:id="@+id/radioButton_AB"
+                    android:text="AB型"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
+        <Button
+                android:id="@+id/button_createAccount"
+                android:text="アカウント作成"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

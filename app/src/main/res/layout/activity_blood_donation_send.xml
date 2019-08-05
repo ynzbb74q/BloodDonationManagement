@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".BloodDonationSendActivity">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:id="@+id/edit_date"
+                android:hint="献血日"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/edit_place"
+                android:hint="献血ルーム名"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_date"/>
+
+        <RadioGroup
+                android:id="@+id/radioGroup_bloodDonationType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_place">
+
+            <RadioButton
+                    android:id="@+id/radioButton_400ml"
+                    android:text="400ml献血"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RadioButton
+                    android:id="@+id/radioButton_200ml"
+                    android:text="200ml献血"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RadioButton
+                    android:id="@+id/radioButton_ingredient"
+                    android:text="成分献血"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
+        <ImageView
+                android:id="@+id/imageView_gift"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="#d3d3d3"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/radioGroup_bloodDonationType"/>
+
+        <RelativeLayout
+                android:id="@+id/area_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_gift">
+
+            <EditText
+                    android:id="@+id/editText_alt"
+                    android:hint="ALT(GPT)"
+                    android:inputType="number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/editText_gtp"
+                    android:hint="γ-GTP"
+                    android:inputType="number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/editText_alt"/>
+
+            <EditText
+                    android:id="@+id/editText_tp"
+                    android:hint="総蛋白"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/editText_gtp"/>
+
+            <EditText
+                    android:id="@+id/editText_alb"
+                    android:hint="アルブミン"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/editText_tp"/>
+
+            <EditText
+                    android:id="@+id/editText_ag"
+                    android:hint="アルブミン対グロブリン比"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_alt"/>
+
+            <EditText
+                    android:id="@+id/editText_chol"
+                    android:hint="コレステロール"
+                    android:inputType="number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_alt"
+                    android:layout_toRightOf="@id/editText_ag"/>
+
+            <EditText
+                    android:id="@+id/editText_ga"
+                    android:hint="グリコアルブミン"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ag"/>
+
+            <EditText
+                    android:id="@+id/editText_rbc"
+                    android:hint="赤血球数"
+                    android:inputType="number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ag"
+                    android:layout_toRightOf="@id/editText_ga"/>
+
+            <EditText
+                    android:id="@+id/editText_hb"
+                    android:hint="ヘモグロビン濃度"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ag"
+                    android:layout_toRightOf="@id/editText_rbc"/>
+
+            <EditText
+                    android:id="@+id/editText_ht"
+                    android:hint="ヘマトクリット値"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ga"/>
+
+            <EditText
+                    android:id="@+id/editText_mcv"
+                    android:hint="平均赤血球容積"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ga"
+                    android:layout_toRightOf="@id/editText_ht"/>
+
+            <EditText
+                    android:id="@+id/editText_mch"
+                    android:hint="平均赤血球ヘモグロビン量"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ht"/>
+
+            <EditText
+                    android:id="@+id/editText_mchc"
+                    android:hint="平均赤血球ヘモグロビン濃度"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_ht"
+                    android:layout_toRightOf="@id/editText_mch"/>
+
+            <EditText
+                    android:id="@+id/editText_wbc"
+                    android:hint="白血球数"
+                    android:inputType="number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_mch"/>
+
+            <EditText
+                    android:id="@+id/editText_plt"
+                    android:hint="血小板数"
+                    android:inputType="numberDecimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editText_mch"
+                    android:layout_toRightOf="@id/editText_wbc"/>
+
+        </RelativeLayout>
+
+        <Button
+                android:id="@+id/button_sendBloodDonation"
+                android:text="登録"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/area_result"/>
+
+    </RelativeLayout>
+
+</ScrollView>
