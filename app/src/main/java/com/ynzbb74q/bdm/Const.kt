@@ -9,11 +9,18 @@ const val PREFERENCE_USER = "user" // ユーザ情報パス
 
 // ユーザ情報キー
 const val KEY_USER_NAME = "name" // ユーザ表示名キー
+const val KEY_USER_SEX = "sex" // 性別キー
 const val KEY_USER_BLOOD_TYPE = "bloodType" // 血液型キー
 
 // 献血情報キー
 const val KEY_BLOOD_DONATION = "bloodDonation"
 const val KEY_REGISTERED = "registered"
+
+// 性別
+enum class SEX(val sex: String) {
+    MALE("男性"),
+    FEMALE("女性")
+}
 
 // 血液型
 enum class BLOOD_TYPE(val bloodTypeName: String) {

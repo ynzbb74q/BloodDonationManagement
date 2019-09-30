@@ -1,7 +1,6 @@
 package com.ynzbb74q.bdm
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -57,8 +56,15 @@ class LoginActivity : AppCompatActivity() {
                 val user = mAuth.currentUser
                 val userRef = mDataBaseReference.child(FIRE_BASE_USER).child(user!!.uid)
 
-
                 if (mIsCreateAccount) { // アカウント作成直後の場合
+                    // 性別をラジオボタンから取得
+                    var sex: SEX = SEX.MALE
+                    when (radioGroup_sex.checkedRadioButtonId) {
+                        R.id.radioButton_male -> sex = SEX.MALE
+                        R.id.radioButton_female -> sex = SEX.FEMALE
+
+                    }
+
                     // 血液型をラジオボタンから取得
                     var bloodType: BLOOD_TYPE = BLOOD_TYPE.TYPE_A
                     when (radioGroup_bloodType.checkedRadioButtonId) {
@@ -69,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     // Firebaseにユーザ情報を登録
-                    val userData = User(edit_createAccountName.text.toString(), bloodType)
+                    val userData = User(edit_createAccountName.text.toString(), sex, bloodType)
                     userRef.setValue(userData)
 
                     // ユーザ情報をPreferenceに保存
@@ -79,9 +85,10 @@ class LoginActivity : AppCompatActivity() {
                     userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val name = dataSnapshot.child(KEY_USER_NAME).getValue().toString()
+                            val sex = SEX.valueOf(dataSnapshot.child(KEY_USER_SEX).getValue().toString())
                             val bloodType =
                                 BLOOD_TYPE.valueOf(dataSnapshot.child(KEY_USER_BLOOD_TYPE).getValue().toString())
-                            val userData = User(name, bloodType)
+                            val userData = User(name, sex, bloodType)
 
                             // ユーザ情報をPreferenceに保存
                             saveUserOnPreference(userData)
@@ -172,6 +179,7 @@ class LoginActivity : AppCompatActivity() {
         val sp = getSharedPreferences(PREFERENCE_USER, MODE_PRIVATE)
         val editor = sp.edit()
         editor.putString(KEY_USER_NAME, user.name)
+        editor.putString(KEY_USER_SEX, user.sex.toString())
         editor.putString(KEY_USER_BLOOD_TYPE, user.bloodType.bloodTypeName)
         editor.commit()
     }

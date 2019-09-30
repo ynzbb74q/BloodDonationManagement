@@ -4,25 +4,30 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.ynzbb74q.bdm.Adapter.BloodDonationListAdapter
 import com.ynzbb74q.bdm.Data.BloodDonation
+import com.ynzbb74q.bdm.Helper.*
 import kotlinx.android.synthetic.main.activity_blood_donation_list.*
 
 class BloodDonationListActivity : AppCompatActivity() {
 
-    private lateinit var mDatabaseReference: DatabaseReference
     private var mBloodDonationRef: DatabaseReference? = null
 
     private lateinit var mListView: ListView
     private lateinit var mAdapter: BloodDonationListAdapter
     private lateinit var mBloodDonationList: ArrayList<BloodDonation>
 
+    private var mCommonHelper: CommonHelper = CommonHelper()
+    private var mFirebaseHelper: FirebaseHelper = FirebaseHelper()
+
     // 献血リスト取得リスナー設定
     private val mEventListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
-            val date = dataSnapshot.child("date").getValue().toString()
+            val date = mCommonHelper.doFormatDate(dataSnapshot.child("date").getValue().toString())
             val place = dataSnapshot.child("place").getValue().toString()
             val type = BLOOD_DONATION_TYPE.valueOf(dataSnapshot.child("type").getValue().toString())
 
@@ -50,8 +55,6 @@ class BloodDonationListActivity : AppCompatActivity() {
 
         // 献血リストオブジェクトの初期化
         mBloodDonationList = ArrayList<BloodDonation>()
-        // Firebaseオブジェクトの初期化
-        mDatabaseReference = FirebaseDatabase.getInstance().reference
 
         // ListViewの設定
         mListView = findViewById(R.id.listView)
@@ -61,10 +64,8 @@ class BloodDonationListActivity : AppCompatActivity() {
         mListView.adapter = mAdapter
 
         // Firebaseから献血リストを取得
-        val user = FirebaseAuth.getInstance().currentUser
-        mBloodDonationRef = mDatabaseReference
-            .child(FIRE_BASE_BLOOD_DONATIONS)
-            .child(user!!.uid)
+//        val user = FirebaseAuth.getInstance().currentUser
+        mBloodDonationRef = mFirebaseHelper.getBloodDonationListRef()
         mBloodDonationRef!!.addChildEventListener(mEventListener)
 
         // FloatingActionButton押下時リスナー設定

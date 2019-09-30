@@ -20,9 +20,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.ynzbb74q.bdm.Data.BloodDonation
 import com.ynzbb74q.bdm.Data.BloodParam
+import com.ynzbb74q.bdm.Helper.FirebaseHelper
 import kotlinx.android.synthetic.main.activity_blood_donation_send.*
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -35,17 +38,11 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private var mPictureUri: Uri? = null
-
-    // Firebaseオブジェクト
-    private lateinit var mDataBaseReference: DatabaseReference
-
+    private var mFirebaseHelper: FirebaseHelper = FirebaseHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blood_donation_send)
-
-        // Firebaseオブジェクトの初期化
-        mDataBaseReference = FirebaseDatabase.getInstance().reference
 
         // 登録済みの献血情報を表示した場合は、登録済みの各値を画面に設定
         val extras = intent.extras
@@ -56,11 +53,9 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
             edit_place.setText(bloodDonation.place)
 
 
-            val user = FirebaseAuth.getInstance().currentUser
-            val bloodDonationRef = mDataBaseReference
-                .child(FIRE_BASE_BLOOD_DONATIONS)
-                .child(user!!.uid)
-                .child(bloodDonation.date)
+//            val user = FirebaseAuth.getInstance().currentUser
+            val bloodDonationRef = mFirebaseHelper.getBloodDonationRef(bloodDonation.date)
+
             bloodDonationRef.addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
 
@@ -183,7 +178,9 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         val datePickerDialog = DatePickerDialog(
             this,
             DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-                edit_date.setText("${year}-${month + 1}-${day}")
+                val zeroPaddingMonth = String.format("%02d", month + 1)
+                val zeroPaddingDay = String.format("%02d", day)
+                edit_date.setText("${year}${zeroPaddingMonth}${zeroPaddingDay}")
             },
             currentDate.get(Calendar.YEAR),
             currentDate.get(Calendar.MONTH),
@@ -217,10 +214,7 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        val bloodDonationRef = mDataBaseReference
-            .child(FIRE_BASE_BLOOD_DONATIONS)
-            .child(user!!.uid)
-            .child(edit_date.text.toString())
+        val bloodDonationRef = mFirebaseHelper.getBloodDonationRef(edit_date.text.toString())
 
         // 献血種別をラジオボタンから取得
         var bloodDonationType: BLOOD_DONATION_TYPE = BLOOD_DONATION_TYPE.TYPE_400
