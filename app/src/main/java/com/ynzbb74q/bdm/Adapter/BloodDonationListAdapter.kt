@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.ynzbb74q.bdm.BLOOD_DONATION_TYPE
 import com.ynzbb74q.bdm.Data.BloodDonation
+import com.ynzbb74q.bdm.Helper.CommonHelper
 import com.ynzbb74q.bdm.R
 
 class BloodDonationListAdapter(context: Context) : BaseAdapter() {
 
     private var mLayoutInflater: LayoutInflater
-    private var mBloodDonationList = ArrayList<BloodDonation>()
+    private var mBloodDonationList = mutableListOf<BloodDonation>()
+    private var mCommonHelper: CommonHelper = CommonHelper()
 
     init {
         mLayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -40,7 +43,7 @@ class BloodDonationListAdapter(context: Context) : BaseAdapter() {
         // 各列の内容を設定
         // 日付
         val date = convertView!!.findViewById<View>(R.id.textView_date) as TextView
-        date.text = mBloodDonationList[position].date
+        date.text = mCommonHelper.doFormatDate(mBloodDonationList[position].date)
 
         // 場所
         val place = convertView!!.findViewById<View>(R.id.textView_place) as TextView
@@ -48,12 +51,12 @@ class BloodDonationListAdapter(context: Context) : BaseAdapter() {
 
         // 献血種別
         val type = convertView!!.findViewById<View>(R.id.textView_type) as TextView
-        type.text = mBloodDonationList[position].type.typeName
+        type.text = BLOOD_DONATION_TYPE.values().filter { it.id == mBloodDonationList[position].type }.first().typeName
 
         return convertView
     }
 
-    public fun setBloodDonationList(bloodDonationList: ArrayList<BloodDonation>) {
+    public fun setBloodDonationList(bloodDonationList: MutableList<BloodDonation>) {
         mBloodDonationList = bloodDonationList
     }
 }

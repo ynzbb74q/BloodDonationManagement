@@ -4,127 +4,120 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         android:orientation="vertical"
         tools:context=".LoginActivity">
-
-
+    <!--表示名入力-->
     <EditText
-            android:id="@+id/edit_loginEmail"
-            android:hint="メールアドレス"
+            android:id="@+id/edit_createAccountName"
+            android:hint="表示名"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-    <EditText
-            android:id="@+id/edit_loginPassword"
-            android:hint="パスワード"
-            android:inputType="textPassword"
+    <!--性別選択エリア-->
+    <RelativeLayout
+            android:id="@+id/area_sexSetting"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <Button
-            android:id="@+id/button_login"
-            android:text="ログイン"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    <!--アカウント作成-->
-    <LinearLayout
-            android:id="@+id/layout_createAccount"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content">
+        <!--性別見出し-->
         <TextView
-                android:text="アカウントを作成する場合は以下を入力してください"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-        <EditText
-                android:id="@+id/edit_createAccountEmail"
-                android:hint="メールアドレス"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        <EditText
-                android:id="@+id/edit_createAccountPassword1"
-                android:hint="パスワード(6文字以上)"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        <EditText
-                android:id="@+id/edit_createAccountPassword2"
-                android:hint="パスワード(再入力)"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        <EditText
-                android:id="@+id/edit_createAccountName"
-                android:hint="表示名"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:id="@+id/textView_sexSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性別"/>
+        <!--性別選択ラジオボタン-->
         <RadioGroup
                 android:id="@+id/radioGroup_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_below="@id/textView_sexSetting">
             <RadioButton
                     android:id="@+id/radioButton_male"
                     android:text="男性"
                     android:checked="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/original_radio_btn_left"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
             <RadioButton
                     android:id="@+id/radioButton_female"
                     android:text="女性"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/original_radio_btn_right"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
         </RadioGroup>
-
+    </RelativeLayout>
+    <!--血液型選択エリア-->
+    <RelativeLayout
+            android:id="@+id/area_bloodTypeSetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <!--血液型見出し-->
+        <TextView
+                android:id="@+id/textView_bloodTypeSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="血液型"/>
+        <!--血液型選択ラジオボタン-->
         <RadioGroup
                 android:id="@+id/radioGroup_bloodType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_below="@id/textView_bloodTypeSetting">
             <RadioButton
                     android:id="@+id/radioButton_A"
                     android:text="A型"
                     android:checked="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/original_radio_btn_left"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
             <RadioButton
                     android:id="@+id/radioButton_B"
                     android:text="B型"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/original_radio_btn_center"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
             <RadioButton
                     android:id="@+id/radioButton_O"
                     android:text="O型"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/original_radio_btn_center"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
             <RadioButton
                     android:id="@+id/radioButton_AB"
                     android:text="AB型"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/original_radio_btn_right"
+                    android:textColor="@drawable/original_radio_btn_textcolor"
+                    android:button="@null"/>
         </RadioGroup>
-
-        <Button
-                android:id="@+id/button_createAccount"
-                android:text="アカウント作成"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-
+    </RelativeLayout>
+    <!--更新ボタン-->
+    <Button
+            android:id="@+id/button_createAccount"
+            android:text="ユーザ情報更新"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 </LinearLayout>

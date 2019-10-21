@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_chartDataItems">
+        <item>ALT(GPT)</item>
+        <item>γ-GTP</item>
+        <item>総蛋白 TP</item>
+        <item>アルブミン ALB</item>
+        <item>アルブミン対グロブリン比 A/G</item>
+        <item>コレステロール CHOL</item>
+        <item>グリコアルブミン GA</item>
+        <item>赤血球数 RBG</item>
+        <item>ヘモグロビン濃度 Hb</item>
+        <item>ヘマトクリット値 Ht</item>
+        <item>平均赤血球容積 MCV</item>
+        <item>平均赤血球ヘモグロビン量 MCH</item>
+        <item>平均赤血球ヘモグロビン濃度 MCHC</item>
+        <item>白血球数 WBC</item>
+        <item>血小板数 PLT</item>
+    </string-array>
+</resources>

@@ -3,8 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
+    <!--日付-->
     <TextView
             android:id="@+id/textView_date"
             android:text="-"
@@ -12,24 +11,23 @@
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentTop="true"/>
-
+    <!--場所-->
     <TextView
             android:id="@+id/textView_place"
             android:text="-"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_below="@+id/textView_date"
+            android:layout_below="@id/textView_date"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"/>
-
+    <!--献血種別-->
     <TextView
             android:id="@+id/textView_type"
             android:text="-"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_below="@+id/textView_date"
+            android:layout_below="@id/textView_date"
             android:layout_marginRight="10dp"/>
-
 </RelativeLayout>

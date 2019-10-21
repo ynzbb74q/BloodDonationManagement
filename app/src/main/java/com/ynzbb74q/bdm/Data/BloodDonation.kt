@@ -1,17 +1,35 @@
 package com.ynzbb74q.bdm.Data
 
 import com.ynzbb74q.bdm.BLOOD_DONATION_TYPE
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import java.io.Serializable
+import java.util.*
 
-data class BloodDonation(
+open class BloodDonation(
+    // プライマリキー
+    @PrimaryKey
+    var id: String = UUID.randomUUID().toString(),
     // 献血日付
-    val date: String,
+    var date: Date = Date(),
     // 献血場所
-    val place: String,
+    var place: String = "",
     // 献血タイプ
-    val type: BLOOD_DONATION_TYPE,
-    // 粗品画像
-    val giftImage: String? = null,
+    var type: Int = BLOOD_DONATION_TYPE.TYPE_400.id,
     // 献血結果
-    val param: BloodParam? = null
-) : Serializable
+    var alt: Float = 0f,
+    var gtp: Float = 0f,
+    var tp: Float = 0f,
+    var alb: Float = 0f,
+    var ag: Float = 0f,
+    var chol: Float = 0f,
+    var ga: Float = 0f,
+    var rbc: Float = 0f,
+    var hb: Float = 0f,
+    var ht: Float = 0f,
+    var mcv: Float = 0f,
+    var mch: Float = 0f,
+    var mchc: Float = 0f,
+    var wbc: Float = 0f,
+    var plt: Float = 0f
+) : RealmObject(), Serializable

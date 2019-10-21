@@ -4,87 +4,109 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         tools:context=".MainActivity">
-
     <!--ユーザ情報表示-->
     <RelativeLayout
             android:id="@+id/area_userInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+        <!--ユーザ名-->
         <TextView
                 android:id="@+id/textView_userName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:textSize="30dp"/>
+        <!--性別-->
         <TextView
                 android:id="@+id/textView_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:layout_below="@id/textView_userName"/>
-
+        <!--血液型-->
         <TextView
                 android:id="@+id/textView_bloodType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView_sex"/>
-
+                android:layout_below="@id/textView_sex"
+                android:textSize="20dp"/>
     </RelativeLayout>
-
+    <!--ログイン画面遷移ボタン-->
     <Button
             android:id="@+id/button_toLogin"
             android:text="ログイン"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/area_userInfo"/>
-
+    <!--献血記録画面遷移ボタン-->
     <Button
             android:id="@+id/button_toBdList"
             android:text="献血記録"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/area_userInfo"
-            android:layout_toRightOf="@+id/button_toLogin"/>
-
-    <!--次回献血可能日表示-->
-    <RelativeLayout
-            android:id="@+id/area_nextDate"
-            android:layout_width="match_parent"
+            android:layout_toRightOf="@id/button_toLogin"/>
+    <!--次回献血可能日見出し-->
+    <TextView
+            android:id="@+id/textView_nextBloodDonationDateTitle"
+            android:text="次回献血可能日"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_toLogin">
-
+            android:layout_below="@id/button_toLogin"/>
+    <!--次回献血可能日表示-->
+    <GridLayout
+            android:id="@+id/area_nextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:layout_below="@id/textView_nextBloodDonationDateTitle">
+        <!--400ml-->
         <TextView
-                android:id="@+id/textView_nextBloodDonationDateTitle"
-                android:text="次回献血可能日"
+                android:text="400ml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         <TextView
                 android:id="@+id/textView_next400mlBloodDonationDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView_nextBloodDonationDateTitle"/>
-
+                android:layout_height="wrap_content"/>
+        <!--200ml-->
+        <TextView
+                android:text="200ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         <TextView
                 android:id="@+id/textView_next200mlBloodDonationDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView_next400mlBloodDonationDate"/>
-
+                android:layout_height="wrap_content"/>
+        <!--成分献血-->
+        <TextView
+                android:text="成分献血ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         <TextView
                 android:id="@+id/textView_nextIngredientBloodDonationDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView_next200mlBloodDonationDate"/>
-
-    </RelativeLayout>
-
+                android:layout_height="wrap_content"/>
+    </GridLayout>
+    <!--グラフ表示項目選択スピナー-->
+    <Spinner
+            android:id="@+id/spinner_chartData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinner_chartDataItems"
+            android:spinnerMode="dialog"
+            android:layout_below="@id/area_nextDate">
+    </Spinner>
     <!--グラフ表示-->
-    <include layout="@layout/chart"
-             android:id="@+id/include_chart"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_margin="5dp"
-             android:layout_below="@id/area_nextDate"/>
-
+    <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_below="@id/spinner_chartData"/>
 </RelativeLayout>

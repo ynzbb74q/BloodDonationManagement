@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <!--項目名見出し-->
+    <TextView
+            android:id="@+id/textView_param"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/colorMyAppRed"/>
+    <!--値入力-->
+    <EditText
+            android:id="@+id/editText_param"
+            android:inputType="number"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_param"/>
+</RelativeLayout>
