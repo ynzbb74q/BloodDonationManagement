@@ -53,6 +53,9 @@ class RealmHelper {
         // id(プライマリキー)を取得条件に設定
         if (!condition.id.isNullOrEmpty()) query.equalTo(BloodDonation::id.name, condition.id)
 
+        // 献血日付を取得条件に設定
+        if (condition.date != null) query.equalTo(BloodDonation::date.name, condition.date)
+
         // ソートを設定
         if (!condition.sortList.isNullOrEmpty()) {
             for (sort in condition.sortList) {

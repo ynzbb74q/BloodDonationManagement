@@ -6,4 +6,6 @@
     <color name="colorMyAppRed">#DC143C</color>
     <color name="colorMyAppLightRed">#DB7093</color>
     <color name="colorMyAppWhite">#FFFFFF</color>
+    <color name="colorMyAppGRAY">#708090</color>
+    <color name="colorMyAppPrimaryDark">#999999</color>
 </resources>

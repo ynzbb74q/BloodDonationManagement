@@ -7,6 +7,11 @@ const val REALM_USER_ID = 1
 const val KEY_BLOOD_DONATION = "bloodDonation"
 const val KEY_REGISTERED = "registered"
 
+// 日付パターン
+const val PATTERN_1 = "yyyy年MM月dd日"
+const val PATTERN_2 = "yyyyMMdd"
+const val PATTERN_3 = "MM月dd日"
+
 // 性別
 enum class SEX(val id: Int, val sex: String) {
     MALE(0, "男性"),

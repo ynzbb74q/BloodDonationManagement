@@ -13,7 +13,9 @@
     <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="5dp"/>
     <!--献血結果追加フローティングボタン-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -22,5 +24,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/colorMyAppRed"
             android:src="@drawable/ic_add_white_24dp"/>
 </RelativeLayout>

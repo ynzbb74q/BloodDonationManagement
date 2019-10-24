@@ -13,5 +13,14 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <!--自作テーマ-->
+    <style name="AppTheme.MyTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--アクションバー色-->
+        <item name="colorPrimary">@color/colorMyAppRed</item>
+        <!--ナビゲーションバー色-->
+        <item name="colorPrimaryDark">@color/colorMyAppPrimaryDark</item>
+    </style>
 
 </resources>

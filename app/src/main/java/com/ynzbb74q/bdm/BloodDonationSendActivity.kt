@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ynzbb74q.bdm.Condition.BloodDonationCondition
 import com.ynzbb74q.bdm.Data.BloodDonation
@@ -18,8 +19,8 @@ import java.util.*
 
 class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
 
-    // 登録済み献血情報のプライマリキー保持用
-    private var mId: String? = null
+    // 登録済み献血情報
+    private var mRegisteredBloodDonation: BloodDonation? = null
 
     private var mCommonHelper: CommonHelper = CommonHelper()
     private var mRealmHelper: RealmHelper = RealmHelper()
@@ -87,18 +88,23 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
                 radioGroup_bloodDonationType.check(checked)
 
                 // 登録済み献血情報のプライマリキーを保持
-                mId = result.id
+                mRegisteredBloodDonation = result
             }
+        } else {
+            // 削除ボタンを非表示
+            imageView_deleteIcon.visibility = View.GONE
         }
 
         area_date.setOnClickListener(this)
         button_sendBloodDonation.setOnClickListener(this)
+        imageView_deleteIcon.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.area_date -> editDateListener()
             R.id.button_sendBloodDonation -> buttonSendBloodDonationListener(v)
+            R.id.imageView_deleteIcon -> deleteIconListner()
         }
     }
 
@@ -128,6 +134,14 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         im.hideSoftInputFromWindow(v.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
 
+        // 日付が設定されているか確認
+        if (textView_date.text.isNullOrEmpty()) {
+            // 入力エラーダイアログを表示
+            displayDialog("入力内容エラー", "日付が入力されていません")
+            // 登録処理を中断
+            return
+        }
+
         // 献血種別をラジオボタンから取得
         var bloodDonationType: BLOOD_DONATION_TYPE = BLOOD_DONATION_TYPE.TYPE_400
         when (radioGroup_bloodDonationType.checkedRadioButtonId) {
@@ -136,9 +150,9 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
             R.id.radioButton_ingredient -> bloodDonationType = BLOOD_DONATION_TYPE.TYPE_INGREDIENT
         }
 
-        // Realmに登録するデータ作成
+        // Realmに登録するデータを作成
         val bloodDonation = BloodDonation()
-        if (mId != null) bloodDonation.id = mId!!
+        if (mRegisteredBloodDonation != null) bloodDonation.id = mRegisteredBloodDonation!!.id
         bloodDonation.date = mCommonHelper.doParseDate(textView_date.text.toString())
         bloodDonation.place = edit_place.text.toString()
         bloodDonation.type = bloodDonationType.id
@@ -158,11 +172,67 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         if (!TextUtils.isEmpty(editText_wbc.editText_param.text)) bloodDonation.wbc = editText_wbc.editText_param.text.toString().toFloat()
         if (!TextUtils.isEmpty(editText_plt.editText_param.text)) bloodDonation.plt = editText_plt.editText_param.text.toString().toFloat()
 
+        // 別プライマリキーで同日が登録済みか確認
+        val condition = BloodDonationCondition()
+        condition.date = mCommonHelper.doParseDate(textView_date.text.toString())
+        val sameDayList = mRealmHelper.getBloodDonationList(condition)
+        for (item in sameDayList) {
+            // 登録済みリストの中に、これから登録するデータと同日で、異なるプライマリキーのデータが存在する場合
+            if (item.id != bloodDonation.id) {
+                // 入力エラーダイアログを表示
+                displayDialog("入力内容エラー", "この日付はすでに登録されています")
+                // 登録処理を中断
+                return
+            }
+        }
+
         // Realmにデータを登録
         mRealmHelper.registBloodDonation(bloodDonation)
 
         // 献血一覧画面に遷移
+        gotoBloodDonationListActivity()
+    }
+
+    // 削除アイコン押下時リスナー設定
+    private fun deleteIconListner() {
+        // 登録済み献血情報が取得できない場合は何もせず終了する(異常時)
+        if (mRegisteredBloodDonation == null) return
+
+        // 確認ダイアログ設定
+        val builder = AlertDialog.Builder(this@BloodDonationSendActivity)
+        builder.setTitle("記録削除")
+        builder.setMessage("この記録を削除してよろしいですか?")
+
+        // 了承ボタン設定
+        builder.setPositiveButton("はい") { _, _ ->
+            // Realmから献血情報を削除
+            mRealmHelper.deleteBloodDonation(mRegisteredBloodDonation!!)
+
+            // 献血一覧画面に遷移
+            gotoBloodDonationListActivity()
+        }
+
+        // 未了承ボタン設定
+        builder.setNegativeButton("いいえ", null)
+
+        // ダイアログ表示
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    // 献血一覧画面に遷移
+    private fun gotoBloodDonationListActivity() {
         val intent = Intent(applicationContext, BloodDonationListActivity::class.java)
         startActivity(intent)
+    }
+
+    // 汎用ダイアログ表示
+    private fun displayDialog(title: String, message: String) {
+        val builder = AlertDialog.Builder(this@BloodDonationSendActivity)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("閉じる", null)
+        val dialog = builder.create()
+        dialog.show()
     }
 }

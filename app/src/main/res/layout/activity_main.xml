@@ -62,8 +62,9 @@
             android:id="@+id/area_nextDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="2"
+            android:columnCount="3"
             android:rowCount="3"
+            android:useDefaultMargins="true"
             android:layout_below="@id/textView_nextBloodDonationDateTitle">
         <!--400ml-->
         <TextView
@@ -74,6 +75,12 @@
                 android:id="@+id/textView_next400mlBloodDonationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/textView_400mlPossible"
+                android:text="献血可能です"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMyAppRed"/>
         <!--200ml-->
         <TextView
                 android:text="200ml"
@@ -83,15 +90,27 @@
                 android:id="@+id/textView_next200mlBloodDonationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/textView_200mlPossible"
+                android:text="献血可能です"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMyAppRed"/>
         <!--成分献血-->
         <TextView
-                android:text="成分献血ml"
+                android:text="成分献血"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <TextView
                 android:id="@+id/textView_nextIngredientBloodDonationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/textView_IngredientPossible"
+                android:text="献血可能です"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMyAppRed"/>
     </GridLayout>
     <!--グラフ表示項目選択スピナー-->
     <Spinner

@@ -134,24 +134,42 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // 400ml献血の次回日を算出
-        val next400mlBloodDonationDate = Calendar.getInstance()
-        next400mlBloodDonationDate.setTime(bloodDonation.date)
-        next400mlBloodDonationDate.add(Calendar.WEEK_OF_YEAR, next400mlWeeks)
+        val next400mlDate = Calendar.getInstance()
+        next400mlDate.setTime(bloodDonation.date)
+        next400mlDate.add(Calendar.WEEK_OF_YEAR, next400mlWeeks)
 
         // 200ml献血の次回日を算出
-        val next200mlBloodDonationDate = Calendar.getInstance()
-        next200mlBloodDonationDate.setTime(bloodDonation.date)
-        next200mlBloodDonationDate.add(Calendar.WEEK_OF_YEAR, next200mlWeeks)
+        val next200mlDate = Calendar.getInstance()
+        next200mlDate.setTime(bloodDonation.date)
+        next200mlDate.add(Calendar.WEEK_OF_YEAR, next200mlWeeks)
 
         // 成分献血の次回日を算出
-        val nextIngredientBloodDonationDate = Calendar.getInstance()
-        nextIngredientBloodDonationDate.setTime(bloodDonation.date)
-        nextIngredientBloodDonationDate.add(Calendar.WEEK_OF_YEAR, nextIngredientWeeks)
+        val nextIngredientDate = Calendar.getInstance()
+        nextIngredientDate.setTime(bloodDonation.date)
+        nextIngredientDate.add(Calendar.WEEK_OF_YEAR, nextIngredientWeeks)
 
         // 各次回献血可能日を画面に表示
-        textView_next400mlBloodDonationDate.text = " : " + mCommonHelper.doFormatDate(next400mlBloodDonationDate.getTime())
-        textView_next200mlBloodDonationDate.text = " : " + mCommonHelper.doFormatDate(next200mlBloodDonationDate.getTime())
-        textView_nextIngredientBloodDonationDate.text = " : " + mCommonHelper.doFormatDate(nextIngredientBloodDonationDate.getTime())
+        textView_next400mlBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(next400mlDate.getTime())
+        textView_next200mlBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(next200mlDate.getTime())
+        textView_nextIngredientBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(nextIngredientDate.getTime())
+
+        // 各献血種別が献血可能かを画面に表示
+        val today = Date()
+        if (today.after(next400mlDate.getTime())) {
+            textView_400mlPossible.visibility = View.VISIBLE
+        } else {
+            textView_400mlPossible.visibility = View.GONE
+        }
+        if (today.after(next200mlDate.getTime())) {
+            textView_200mlPossible.visibility = View.VISIBLE
+        } else {
+            textView_200mlPossible.visibility = View.GONE
+        }
+        if (today.after(nextIngredientDate.getTime())) {
+            textView_IngredientPossible.visibility = View.VISIBLE
+        } else {
+            textView_IngredientPossible.visibility = View.GONE
+        }
     }
 
     // グラフ表示
@@ -195,7 +213,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             value = if (value == null) 0.toFloat() else value
 
             // リストに各値を格納
-            paramList.put(mCommonHelper.doFormatDate(bloodDonation.date), value)
+            paramList.put(mCommonHelper.doFormatShortDate(bloodDonation.date), value)
         }
 
         // LineChartのレイアウト設定
