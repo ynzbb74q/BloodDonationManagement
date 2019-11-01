@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_toLogin.setOnClickListener(this)
         button_toBdList.setOnClickListener(this)
+        button_userInfoSetting.setOnClickListener(this)
 
         // グラフ表示項目選択スピナー変更時
         spinner_chartData.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.button_toLogin -> {
-                val intent = Intent(applicationContext, LoginActivity::class.java)
-                startActivity(intent)
-            }
             R.id.button_toBdList -> {
                 val intent = Intent(applicationContext, BloodDonationListActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.button_userInfoSetting -> {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -229,7 +229,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // X軸のラベルの文字列格納用
-        var xLabel = ArrayList<String>()
+        val xLabel = ArrayList<String>()
         // グラフのデータ格納用
         val values = mutableListOf<Entry>()
 
@@ -255,7 +255,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val labelName = BLOOD_DONATION_PARAM.values().filter { it.id == paramId }.first().paramName
         val line = LineDataSet(values, labelName).apply {
             axisDependency = YAxis.AxisDependency.LEFT
-            lineWidth = 2.5f // 線の太さ
+            lineWidth = 3.5f // 線の太さ
             color = ContextCompat.getColor(this@MainActivity, R.color.colorMyAppRed) // 線の色
             highLightColor = ContextCompat.getColor(this@MainActivity, R.color.colorMyAppLightRed) // タップ時のハイライト色
             setDrawCircles(false) // 点の表示

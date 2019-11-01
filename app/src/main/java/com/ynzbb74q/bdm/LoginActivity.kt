@@ -1,6 +1,7 @@
 package com.ynzbb74q.bdm
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -62,14 +63,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             // Realmにユーザ情報を登録
-            mRealmHelper.registUserInfo(
-                User(
-                    REALM_USER_ID,
-                    edit_createAccountName.text.toString(),
-                    sex.id,
-                    bloodType.id
-                )
-            )
+            mRealmHelper.registUserInfo(User(REALM_USER_ID, edit_createAccountName.text.toString(), sex.id, bloodType.id))
+
+            // メイン画面に遷移
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
