@@ -87,57 +87,33 @@
     <!--次回献血可能日表示-->
     <GridLayout
             android:id="@+id/area_nextDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"
-            android:rowCount="3"
+            android:rowCount="1"
             android:useDefaultMargins="true"
             android:layout_below="@id/textView_nextBloodDonationDateTitle">
         <!--400ml-->
-        <TextView
-                android:text="400ml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_next400mlBloodDonationDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_400mlPossible"
-                android:text="献血可能です"
-                android:layout_width="wrap_content"
+        <include
+                android:id="@+id/next400ml"
+                layout="@layout/text_view_next_date"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorMyAppRed"/>
+                android:layout_columnWeight="1"/>
         <!--200ml-->
-        <TextView
-                android:text="200ml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_next200mlBloodDonationDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_200mlPossible"
-                android:text="献血可能です"
-                android:layout_width="wrap_content"
+        <include
+                android:id="@+id/next200ml"
+                layout="@layout/text_view_next_date"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorMyAppRed"/>
+                android:layout_columnWeight="1"/>
         <!--成分献血-->
-        <TextView
-                android:text="成分献血"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_nextIngredientBloodDonationDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/textView_IngredientPossible"
-                android:text="献血可能です"
-                android:layout_width="wrap_content"
+        <include
+                android:id="@+id/nextIngredient"
+                layout="@layout/text_view_next_date"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorMyAppRed"/>
+                android:layout_columnWeight="1"/>
     </GridLayout>
     <!--グラフ表示エリア-->
     <LinearLayout

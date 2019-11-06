@@ -20,6 +20,7 @@ import com.ynzbb74q.bdm.Helper.CommonHelper
 import com.ynzbb74q.bdm.Helper.RealmHelper
 import io.realm.Sort
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.text_view_next_date.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -139,27 +140,26 @@ class MainFragment : Fragment() {
         nextIngredientDate.setTime(bloodDonation.date)
         nextIngredientDate.add(Calendar.WEEK_OF_YEAR, nextIngredientWeeks)
 
-        // 各次回献血可能日を画面に表示
-        textView_next400mlBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(next400mlDate.getTime())
-        textView_next200mlBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(next200mlDate.getTime())
-        textView_nextIngredientBloodDonationDate.text = ": " + mCommonHelper.doFormatDate(nextIngredientDate.getTime())
+        // TODO 献血種別の見出し文字設定(<include>タグでパラメータを渡す方法が見つからないため)
+        next400ml.textView_title.text = "400ml"
+        next200ml.textView_title.text = "200ml"
+        nextIngredient.textView_title.text = "成分献血"
 
-        // 各献血種別が献血可能かを画面に表示
+        // 各次回献血可能日を画面に表示
+        next400ml.textView_date.text = mCommonHelper.doFormatDate(next400mlDate.getTime()).replace("年", "年\n")
+        next200ml.textView_date.text = mCommonHelper.doFormatDate(next200mlDate.getTime()).replace("年", "年\n")
+        nextIngredient.textView_date.text = mCommonHelper.doFormatDate(nextIngredientDate.getTime()).replace("年", "年\n")
+
+        // 各献血種別が献血不可能であれば、OKアイコンを非表示
         val today = Date()
-        if (today.after(next400mlDate.getTime())) {
-            textView_400mlPossible.visibility = View.VISIBLE
-        } else {
-            textView_400mlPossible.visibility = View.GONE
+        if (today.before(next400mlDate.getTime())) {
+            next400ml.imageView_okIcon.visibility = View.GONE
         }
-        if (today.after(next200mlDate.getTime())) {
-            textView_200mlPossible.visibility = View.VISIBLE
-        } else {
-            textView_200mlPossible.visibility = View.GONE
+        if (today.before(next200mlDate.getTime())) {
+            next200ml.imageView_okIcon.visibility = View.GONE
         }
-        if (today.after(nextIngredientDate.getTime())) {
-            textView_IngredientPossible.visibility = View.VISIBLE
-        } else {
-            textView_IngredientPossible.visibility = View.GONE
+        if (today.before(nextIngredientDate.getTime())) {
+            nextIngredient.imageView_okIcon.visibility = View.GONE
         }
     }
 
