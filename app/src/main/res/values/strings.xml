@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">BloodDonationManagement</string>
-    <string name="title_activity_damy">DamyActivity</string>
-    <string name="title_activity_blood_donation_list">BloodDonationListActivity</string>
     <string name="date_input_hint">
         <font size="15">献血日を入力してください (必須)</font>
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

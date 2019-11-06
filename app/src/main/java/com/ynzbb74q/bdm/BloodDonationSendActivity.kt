@@ -189,8 +189,8 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         // Realmにデータを登録
         mRealmHelper.registBloodDonation(bloodDonation)
 
-        // 献血一覧画面に遷移
-        gotoBloodDonationListActivity()
+        // メイン画面に遷移
+        gotoMainActivity()
     }
 
     // 削除アイコン押下時リスナー設定
@@ -208,8 +208,8 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
             // Realmから献血情報を削除
             mRealmHelper.deleteBloodDonation(mRegisteredBloodDonation!!)
 
-            // 献血一覧画面に遷移
-            gotoBloodDonationListActivity()
+            // メイン画面に遷移
+            gotoMainActivity()
         }
 
         // 未了承ボタン設定
@@ -220,9 +220,9 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
-    // 献血一覧画面に遷移
-    private fun gotoBloodDonationListActivity() {
-        val intent = Intent(applicationContext, BloodDonationListActivity::class.java)
+    // メイン画面に遷移
+    private fun gotoMainActivity() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
         startActivity(intent)
     }
 

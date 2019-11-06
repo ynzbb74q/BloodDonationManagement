@@ -10,8 +10,6 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.MyTheme">
-        <activity android:name=".BloodDonationListActivity">
-        </activity>
         <activity android:name=".BloodDonationSendActivity">
         </activity>
         <activity android:name=".LoginActivity">
