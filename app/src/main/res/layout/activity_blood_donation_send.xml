@@ -93,19 +93,27 @@
     <!--献血結果見出し-->
     <TextView
             android:id="@+id/textView_result"
-            android:text="献血結果"
+            android:text="検査成績"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/radioGroup_bloodDonationType"/>
     <!--献血結果入力-->
+    <TextView
+            android:id="@+id/textView_resultUpperTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/colorMyAppLightGray"
+            android:layout_below="@id/textView_result"
+            android:text="生化学検査"/>
     <GridLayout
-            android:id="@+id/area_result"
+            android:id="@+id/area_resultUpper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:columnCount="4"
-            android:rowCount="5"
+            android:rowCount="2"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/textView_result">
+            android:layout_below="@id/textView_resultUpperTitle">
         <include
                 android:id="@+id/editText_alt"
                 layout="@layout/edit_text_blood_donation_param"/>
@@ -127,6 +135,23 @@
         <include
                 android:id="@+id/editText_ga"
                 layout="@layout/edit_text_blood_donation_param"/>
+    </GridLayout>
+    <TextView
+            android:id="@+id/textView_resultLowerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/colorMyAppLightGray"
+            android:layout_below="@id/area_resultUpper"
+            android:text="血球計数検査"/>
+    <GridLayout
+            android:id="@+id/area_result_lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:rowCount="2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textView_resultLowerTitle">
         <include
                 android:id="@+id/editText_rbc"
                 layout="@layout/edit_text_blood_donation_param"/>
@@ -158,5 +183,5 @@
             android:text="登録"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/area_result"/>
+            android:layout_alignParentBottom="true"/>
 </RelativeLayout>
