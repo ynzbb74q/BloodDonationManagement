@@ -37,20 +37,14 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_toRightOf="@id/area_date"/>
-    <!--献血ルーム入力-->
-    <EditText
-            android:id="@+id/edit_place"
-            android:hint="献血ルーム名"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/area_date"/>
     <!--献血種別見出し-->
     <TextView
             android:id="@+id/textView_bloodDonationTypeSetting"
             android:text="献血種別"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edit_place"/>
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/area_date"/>
     <!--献血種別ラジオボタン-->
     <RadioGroup
             android:id="@+id/radioGroup_bloodDonationType"
@@ -96,6 +90,7 @@
             android:text="検査成績"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_below="@id/radioGroup_bloodDonationType"/>
     <!--献血結果入力-->
     <TextView

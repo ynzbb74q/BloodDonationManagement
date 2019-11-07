@@ -36,6 +36,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // TODO 献血種別の見出し文字設定(<include>タグでパラメータを渡す方法が見つからないため)
+        next400ml.textView_title.text = "400ml"
+        next200ml.textView_title.text = "200ml"
+        nextIngredient.textView_title.text = "成分献血"
+
         // ユーザ情報設定ボタン押下時リスナー設定
         button_userInfoSetting.setOnClickListener { view ->
             val intent = Intent(activity, LoginActivity::class.java)
@@ -139,11 +144,6 @@ class MainFragment : Fragment() {
         val nextIngredientDate = Calendar.getInstance()
         nextIngredientDate.setTime(bloodDonation.date)
         nextIngredientDate.add(Calendar.WEEK_OF_YEAR, nextIngredientWeeks)
-
-        // TODO 献血種別の見出し文字設定(<include>タグでパラメータを渡す方法が見つからないため)
-        next400ml.textView_title.text = "400ml"
-        next200ml.textView_title.text = "200ml"
-        nextIngredient.textView_title.text = "成分献血"
 
         // 各次回献血可能日を画面に表示
         next400ml.textView_date.text = mCommonHelper.doFormatDate(next400mlDate.getTime()).replace("年", "年\n")

@@ -12,8 +12,6 @@ open class BloodDonation(
     var id: String = UUID.randomUUID().toString(),
     // 献血日付
     var date: Date = Date(),
-    // 献血場所
-    var place: String = "",
     // 献血タイプ
     var type: Int = BLOOD_DONATION_TYPE.TYPE_400.id,
     // 献血結果

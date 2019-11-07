@@ -61,7 +61,6 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
             if (result != null) {
                 // 画面に表示する各値を設定
                 textView_date.setText(mCommonHelper.doFormatDate(result.date))
-                edit_place.setText(result.place)
                 editText_alt.editText_param.setText(result.alt.toString())
                 editText_gtp.editText_param.setText(result.gtp.toString())
                 editText_tp.editText_param.setText(result.tp.toString())
@@ -154,7 +153,6 @@ class BloodDonationSendActivity : AppCompatActivity(), View.OnClickListener {
         val bloodDonation = BloodDonation()
         if (mRegisteredBloodDonation != null) bloodDonation.id = mRegisteredBloodDonation!!.id
         bloodDonation.date = mCommonHelper.doParseDate(textView_date.text.toString())
-        bloodDonation.place = edit_place.text.toString()
         bloodDonation.type = bloodDonationType.id
         if (!TextUtils.isEmpty(editText_alt.editText_param.text)) bloodDonation.alt = editText_alt.editText_param.text.toString().toFloat()
         if (!TextUtils.isEmpty(editText_gtp.editText_param.text)) bloodDonation.gtp = editText_gtp.editText_param.text.toString().toFloat()

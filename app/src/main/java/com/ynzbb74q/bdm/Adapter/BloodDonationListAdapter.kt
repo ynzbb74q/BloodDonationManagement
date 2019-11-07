@@ -44,11 +44,7 @@ class BloodDonationListAdapter(context: Context) : BaseAdapter() {
         // 日付
         val date = convertView!!.findViewById<View>(R.id.textView_date) as TextView
         date.text = mCommonHelper.doFormatDate(mBloodDonationList[position].date)
-
-        // 場所
-        val place = convertView!!.findViewById<View>(R.id.textView_place) as TextView
-        place.text = mBloodDonationList[position].place
-
+        
         // 献血種別
         val type = convertView!!.findViewById<View>(R.id.textView_type) as TextView
         type.text = BLOOD_DONATION_TYPE.values().filter { it.id == mBloodDonationList[position].type }.first().typeName
