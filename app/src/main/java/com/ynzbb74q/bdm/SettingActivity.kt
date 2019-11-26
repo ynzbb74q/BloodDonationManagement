@@ -7,15 +7,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.ynzbb74q.bdm.Data.User
 import com.ynzbb74q.bdm.Helper.RealmHelper
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_setting.*
 
-class LoginActivity : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
 
     private var mRealmHelper: RealmHelper = RealmHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_setting)
 
         // Realmから登録済み情報を取得
         val user = mRealmHelper.getUserInfo()

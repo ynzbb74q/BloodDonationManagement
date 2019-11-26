@@ -16,6 +16,12 @@
             android:layout_height="wrap_content"
             android:divider="@null"
             android:dividerHeight="5dp"/>
+    <TextView
+            android:id="@+id/textView_noData"
+            android:text="献血記録がありません\n右下のボタンから登録してください"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    android:layout_centerInParent="true"/>
     <!--献血結果追加フローティングボタン-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

@@ -43,14 +43,16 @@ class MainFragment : Fragment() {
 
         // ユーザ情報設定ボタン押下時リスナー設定
         button_userInfoSetting.setOnClickListener { view ->
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
+            gotoSettingActivity()
         }
 
         // Realmからユーザ情報を取得
         val user = mRealmHelper.getUserInfo()
 
-        if (user != null) {
+        // ユーザ情報が存在しない(初回起動)場合は設定画面に遷移
+        if (user == null) {
+            gotoSettingActivity()
+        } else {
             // ユーザ名表示
             textView_userName.text = user.name
             // 性別表示
@@ -266,5 +268,11 @@ class MainFragment : Fragment() {
 
         // グラフを再描画
         lineChart.invalidate()
+    }
+
+    // 設定画面に遷移
+    private fun gotoSettingActivity() {
+        val intent = Intent(activity, SettingActivity::class.java)
+        startActivity(intent)
     }
 }

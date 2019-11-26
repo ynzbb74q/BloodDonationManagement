@@ -32,6 +32,9 @@ class BloodDonationListFragment : Fragment() {
         condition.sortList.put(BloodDonation::date.name, Sort.DESCENDING)
         val bloodDonationList = mRealmHelper.getBloodDonationList(condition) as MutableList
 
+        // 献血リストが存在する場合、データが存在しない文言を非表示
+        if (bloodDonationList.size > 0) textView_noData.visibility = View.GONE
+
         // ListViewの設定
         mListView = view.findViewById(R.id.listView)
         mAdapter = BloodDonationListAdapter(context!!)

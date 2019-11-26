@@ -9,7 +9,7 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:orientation="vertical"
-        tools:context=".LoginActivity">
+        tools:context=".SettingActivity">
     <!--表示名入力-->
     <EditText
             android:id="@+id/edit_createAccountName"

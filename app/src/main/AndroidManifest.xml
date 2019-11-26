@@ -12,7 +12,7 @@
             android:theme="@style/AppTheme.MyTheme">
         <activity android:name=".BloodDonationSendActivity">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SettingActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
